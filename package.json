@@ -1,0 +1,43 @@
+{
+  "name": "referendum-notice",
+  "description": "",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist",
+    "start": "node dist/index.js",
+    "build": "npm run clean && babel --out-dir dist src",
+    "build:dev": "npm run clean && ENV=dev babel --out-dir dist src",
+    "bot:dev": "npm run build:dev && ENV=dev node dist/index.js",
+    "cron": "nodemon src/cron.js --exec babel-node --ignore './files/**'",
+    "cron:dev": "ENV=dev nodemon src/cron.js --exec babel-node --ignore './files/**'",
+    "service": "nodemon src/service.js --exec babel-node --ignore './files/**'",
+    "service:dev": "ENV=dev nodemon src/service.js --exec babel-node --ignore 'files/**'",
+    "telegram:dev": "ENV=dev nodemon src/telegram/index.js --exec babel-node --ignore 'files/**'",
+    "lint": "eslint src",
+    "pretty": "prettier --write \"./src/**/*.{js,ts,jsx,json}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.0",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.6.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.22.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "rimraf": "^5.0.1"
+  },
+  "dependencies": {
+    "@polkadot/api": "^10.9.1",
+    "matrix-bot-sdk": "^0.6.6",
+    "sequelize": "^6.32.1",
+    "sqlite3": "^5.1.6",
+    "telegraf": "^4.12.2",
+    "winston": "^3.10.0"
+  }
+}
